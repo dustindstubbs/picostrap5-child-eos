@@ -1,0 +1,200 @@
+/* ============ ADD HERE YOUR CUSTOM SCSS or  plain CSS CODE. ============ 
+
+HOW DOES IT WORK?
+
+    Edit this file, save, 
+    view page as admin:
+    The style will be AUTOMATICALLY recompiled and 
+    your new CSS bundle will be reloaded via ajax to show 
+    the new styling edits.
+
+NOTICE for beginners: 
+
+    CODE HERE YOUR MASTERPIECE, but before that, if you haven't yet,
+    please take your time to understand and study how Bootstrap works.
+    It can save you a lot of time,
+    eg. to standardize project colors, or fully customize typography.
+    First of all, have a ride in the WordPress Customizer.
+    Then learn to use Bootstrap 5 Classes and utilities.
+    If you come from the CSS world, take some time to study the basic of SASS. It's very powerful.
+    With great powers...you are warned 
+
+
+IMPORTANT NOTE REGARDING REFERENCING ELEMENTS IN THE THEME FOLDER
+    Please access those prepending ../ in the path, as the rendered CSS
+    that is executed from the browser is in the /css-output/ theme subfolder    
+
+
+************************************************		*/
+//a demo statement - uncomment to see page turn red and blush
+//body { background: red; opacity: 0.4;border:5px solid yellow}  
+
+//open menus on hover
+//.dropdown:hover>.dropdown-menu { display: block;}
+  
+
+//PAGE HAS SCROLLED: From the Customizer, enable the "Scroll Detection" feature to be able to use the classes:
+
+//body.scroll-position-at-top  {background:lime}
+//body.scroll-position-not-at-top {background:red}
+
+ 
+//HOW TO INCLUDE A CUSTOM FONT
+//1. Upload the .woff2 font file in the /fonts/ folder 
+//2. Adjust and use the code snippet below
+//3. Open the Customizer and declare the font in the "Font Family Base" / "Headings Font Family" field
+
+//include custom font
+//@font-face {
+//  font-family: 'Playfair Display';
+//  src: url('../fonts/playfair-display.woff2') format('woff2');
+//}
+ 
+// Custom variables
+.bg-gray { background-color: $gray-300!important }
+.border-gray { border-color: $gray-300!important }
+.text-responsive-p { font-size: calc(.5rem + .5vw + .5vh) }
+.text-responsive-h1 { font-size: calc(.6rem + 1vw + 1vh) }
+.fixed-top { position: sticky!important }
+.gform_button { background: var(--bs-primary); border: none; border-radius: $border-radius; color:white; padding: .5em 1em .5em 1em; margin-right:1em }
+#container-content-page { margin-bottom: 3em }
+.hours-row { display: flex; justify-content: space-between; }
+// Ajax Search styles
+.asl_res_url { color: var(--bs-dark)!important; font-weight: 500!important;}
+.asl_r { border-radius: $border-radius!important; border: $gray-300 solid 1px!important; box-shadow:none!important}
+.ajax-search input { font-size: var(--bs-body-font-size)!important }
+
+/* Enable nav hover on desktop and add some desktop exclusive styles (down to the 2nd depth of dropdown) (XL) */
+@media all and (min-width: 1200px) {
+    .bg-xl-dark { background-color: var(--bs-dark)!important }
+	.navbar .nav-item:hover .depth_0 { display: block } // Show first level dropdown on hover
+    .navbar .nav-item .nav-item:hover .depth_1 { display: block; left: 100%; top: 0; right: auto;} // Show second level dropdown on hover (and add missing styles that are applied via JS normally)
+    .dropdown-menu { border: $gray-300 solid 1px; padding: 0;}
+    .dropdown-item { padding: 10px; display: flex; }
+    .dropdown-item:hover { border-left: var(--bs-primary) solid 4px; padding-left: 6px; background: var(--bs-light); color:var(--bs-dark) }
+    .dropdown-item.active:hover { border-left: none; padding-left: 10px; background: var(--bs-primary); color:var(--bs-white) } /* Remove hover effect for active links */
+    .dropdown-item:active { background: var(--bs-light); color: var(--bs-dark) }
+    .bg-lg-inherit { background: inherit!important }
+}
+
+/* Tablet and under styles (XL) */
+@media all and (max-width: 1200px) {
+    .custom-logo-link { max-width: 130px }
+    nav form { display:flex; order:-1; padding: 2rem .3rem 0 .3rem; width: 100% } // Move search bar to top
+    nav .ajax-search { display:flex; order:-1; padding: 2rem .3rem 0 .3rem; width: 100% } // Move ajax search bar to top
+    nav .nav-link { padding: 1em; background: var(--bs-light); outline:none; border-radius: $border-radius }
+    .navbar-nav>li { margin: 0 0 .5em 0!important }
+    .btn-sm-full { width: 100%!important }
+    nav ul { padding-left: 0!important; width: 100%; padding-top: 2em}
+    nav .navbar-collapse { display:flex; flex-direction: column }
+    nav .dropdown-toggle { justify-content: space-between; display: flex }
+    nav .dropdown-menu { border: none}
+    nav .dropdown-item { padding: 18px 0 18px 1em; border-radius: $border-radius }
+    nav .dropdown-toggle::after {
+        // Move the arrows to the end of the bar
+        display:flex;
+        align-self: center;
+        margin-left: 0.7em; 
+        // Turn the second depth dropdown into a down arrow on mobile
+        vertical-align: 0.255em!important;
+        border-top: 0.3em solid!important;
+        border-right: 0.3em solid transparent!important;
+        border-bottom: 0!important;
+        border-left: 0.3em solid transparent!important;
+    }
+    .dropdown-item:active { background: var(--bs-light); color: var(--bs-dark) } /* Remove hover effect for active links */
+    nav .depth_0 .dropdown-toggle::after { margin-right:18px; }
+    nav .depth_1 .dropdown-toggle::after { padding-left:28px; }
+
+    // Update menu button
+    .navbar-toggler-icon { background-image: url('../img/squares-menu.svg') }
+    .navbar-toggler-icon { width: 1.7rem; height: 1.7rem }
+    .navbar-toggler-icon { color: $gray-300 }
+    .navbar-toggler { border: none; padding: 0; font-size: inherit}
+    .navbar-toggler:focus { box-shadow: none }
+    .navbar-collapse { max-height:80vh; overflow-y: scroll }
+    .contact-bar svg { min-width:1.7rem; min-height: 1.7rem }
+    .contact-bar a { padding: .2rem; }
+}
+
+/* Reduce navbar padding when using sticky navbar w/ scroll detection */
+body.scroll-position-at-top #wrapper-navbar .navbar { padding: 1rem 0 1rem 0}
+body.picostrap_header_navbar_position_fixed-top:not(.picostrap_header_navbar_color_choice_bg-transparent) { padding-top: 0 }
+body.picostrap_header_navbar_position_fixed-top #wpadminbar { opacity: 1; position: initial }
+
+/* Add some css to the nav bar to make it prettier on Desktop */
+.navbar .nav-item .dropdown-menu{ margin-top: 0; margin-left: 0 } // Remove margin space, since it will technically un-hover the nav when mousing to the dropdown
+.navbar-nav>li { margin: 0 1em 0 1em}
+.nav-link { color: var(--bs-dark) }
+#logo-tagline-wrap { max-width: 150px; display: flex }
+.dropdown-toggle::after { margin-left: .5em }
+.depth_0 .dropdown-toggle { justify-content: space-between }
+.depth_0 .dropdown-toggle::after { display: flex; align-self: center; margin-left: .7em }
+.depth_1 { margin-top: -1px!important } /* Square up the second level  dropdowns -- real nice on the eyes */
+.nav-link:hover, .nav-link:focus {color: initial} /* Remove default hover color */
+.nav-link.active { color: initial!important; font-weight: bold } /* Remove active color change and add border for active links */
+.navbar .dropdown-menu { overflow:hidden }
+
+/* Style the default picostrap posts cards */
+.card-article a { text-decoration: none; color: var(--bs-dark) }
+.picostrap-read-more-link { display: none }
+
+/* Style the default LiveCanvas posts shortcode cards */
+div[lc-helper='posts-loop'] a { text-decoration: none; color: var(--bs-dark) }
+div[lc-helper='posts-loop'] h2 { font-size: 1.5rem }
+div[lc-helper='posts-loop'] .card { height: 100%!important }
+div[lc-helper='posts-loop'] .card .text-end { display: none }
+div[lc-helper='posts-loop'] img { aspect-ratio: 16 / 9; object-fit: cover }
+div[lc-helper='posts-loop'] img[alt]:before {  // If there's no image available, hide the no image icon
+    display: inline-block;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $gray-300;
+    content: attr(alt);
+  }
+
+// Style single post
+.container-post { max-width: 800px; }
+.picostrap-sharing-buttons { padding-top: 2rem }
+.video-embed iframe { aspect-ratio: 16 / 9; width: 100%!important; height: auto!important; position:relative; width: 100%; display: block!important; }
+
+// Prose typography classes
+.prose { color:#485569;line-height:1.7em }
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 { color:var(--bs-dark);margin-top:1.8666667em;margin-bottom: 1.0666667em; }
+.prose .wp-block-image img { width:100%!important; height:auto!important }
+.prose a { color:inherit;color:#0f172a;font-weight: 700; }
+.prose hr { margin-top: 3.1111111em;margin-bottom: 3.1111111em; }
+.prose blockquote { color: #0f172a;font-weight:200!important;font-style: italic; }
+.prose blockquote cite { color:$gray-600;font-style:normal;font-weight:normal; }
+.prose .wp-block-pullquote { padding: 1em 0!important; font-size: 1.3em!important; }
+.prose .wp-block-pullquote blockquote { border:none;padding-left:0 }
+.prose b, .prose strong { color: #0f172a;font-weight: 700; }
+.prose li, .prose summary { margin-top:0.6666667em;margin-bottom:0.6666667em;padding-left: 12px; }
+.prose li::marker, .prose summary::marker { color:$gray-500 }
+.prose table { border-color: $gray-300 }
+.prose th, .prose td { border-left:none;border-right:none;border-color: $gray-300 }
+.prose th { border-top:none;color: #0f172a;font-weight: 700; }
+.prose p, .prose blockquote, .prose table, .prose details { margin-top: 1.3333333em;margin-bottom: 1.3333333em; }
+.prose .wp-block-media-text { margin-top: 1.3333333em;margin-bottom: 1.3333333em; }
+.prose img { border-radius: $border-radius }
+.prose .wp-block-cover strong, .prose .wp-block-cover h1, .prose .wp-block-cover h2, .prose .wp-block-cover h3, .prose .wp-block-cover h4 { color: inherit!important }
+.prose .wp-block-button a { background: var(--bs-primary); border-radius: $border-radius; color: #fff }
+
+// Prose desktop only classes
+@media all and (min-width: 600px) {
+    .prose blockquote { border-left: 5px solid $gray-300!important;padding-left: 18px!important; }
+    .prose .wp-block-media-text.has-media-on-the-right .wp-block-media-text__content { padding: 0 8% 0 0!important }
+    .prose .wp-block-media-text .wp-block-media-text__content { padding: 0 0 0 8%!important }
+}
+
+// Footer
+.footer-menu ul { list-style-type: none; padding: 0 }
+
+// This fixes font display on MacOS
+html { -webkit-font-smoothing: antialiased; }
+
+// Allows bolding of lead font
+.lead { font-weight:inherit }
